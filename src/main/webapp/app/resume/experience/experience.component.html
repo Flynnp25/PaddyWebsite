@@ -1,0 +1,14 @@
+<h2>
+    {{experience.companyName}}
+</h2>
+<h3>
+    {{experience.position}}
+</h3>
+<ol>
+    <li *ngFor='let about of experience.about'>{{about}}</li>
+</ol>
+
+<ul>
+    <li *ngFor='let keyproject of experience.keyProjects'>{{keyproject}}</li>
+</ul>
+<p>{{experience.techUsed}}</p>
