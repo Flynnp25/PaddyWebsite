@@ -8,6 +8,7 @@ import {SharedModule} from './shared/shared.module';
 import {ExperienceService} from './resume/experience/experience.service';
 import {AboutModule} from './about/about.module';
 import {ResumeModule} from './resume/resume.module';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
     declarations: [
@@ -20,7 +21,8 @@ import {ResumeModule} from './resume/resume.module';
         HttpModule,
         routing,
         AboutModule,
-        ResumeModule
+        ResumeModule,
+        BrowserAnimationsModule
     ],
     providers: [
         ExperienceService

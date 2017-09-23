@@ -2,9 +2,24 @@
     <div class="row">
         <div class="row">
             <div class="col-lg-6 text-left">
-                <div *ngFor='let experience of experiences'>
-                    <experience [data]="experience"></experience>
-                </div>
+                <!--                <ul>
+                                    <li *ngFor="let hero of staggeringHeroes; let i = index"
+                                        (@flyInOut.done)="doNext()"
+                                        [@flyInOut]="'in'" (click)="removeMe(i)">
+                                        {{hero}}
+                                    </li>
+                                </ul>-->
+
+                <!--<div *ngFor='let experience of experiences; let i = index'>-->
+                <!--<div [@myAwesomeAnimation]='state' (click)="animateMe(i)">-->
+                <experience
+                    *ngFor='let exp of experiences;'
+                    [@heroState]="exp.state"
+                    (click)="exp.toggleState()"
+                    [data]="exp">
+                </experience>
+                <!--</div>-->
+                <!--</div>-->
             </div>
         </div>
     </div>

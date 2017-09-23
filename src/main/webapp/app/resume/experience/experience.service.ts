@@ -20,6 +20,8 @@ export class ExperienceService {
 
     private extractData(res: Response) {
         const body = res.json();
+        // let experienceArr: Experience[];
+        // experienceArr = JSON.parse(body);
         return body || {};
     }
 

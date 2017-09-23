@@ -16,4 +16,8 @@ export class ExperienceComponent implements OnInit {
     ngOnInit() {
         this.experience = this.data;
     }
+
+    toggleState() {
+        this.experience.state = this.experience.state === 'active' ? 'inactive' : 'active';
+    }
 }

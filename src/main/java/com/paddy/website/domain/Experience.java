@@ -16,10 +16,12 @@ public class Experience extends AbstractAuditingEntity implements Serializable {
 
     String position;
     String companyName;
-    String dates;
+    String startDate;
+    String endDate;
     ArrayList<String> about;
     ArrayList<String> keyProjects;
     String techUsed;
+    String url;
 
     public String getPosition() {
         return position;
@@ -35,14 +37,6 @@ public class Experience extends AbstractAuditingEntity implements Serializable {
 
     public void setCompanyName(String companyName) {
         this.companyName = companyName;
-    }
-
-    public String getDates() {
-        return dates;
-    }
-
-    public void setDates(String dates) {
-        this.dates = dates;
     }
 
     public ArrayList<String> getAbout() {
@@ -68,4 +62,29 @@ public class Experience extends AbstractAuditingEntity implements Serializable {
     public void setTechUsed(String techUsed) {
         this.techUsed = techUsed;
     }
+
+    public String getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
+    }
+
+    public String getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
+    }
+
+    public String getUrl(){
+        return this.url;
+    }
+
+    public void setUrl(String url){
+        this.url = url;
+    }
+    
 }

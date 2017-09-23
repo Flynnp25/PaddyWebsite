@@ -1,14 +1,20 @@
 <h2>
-    {{experience.companyName}}
+    <a href="{{experience.url}}">{{experience.companyName}}</a>
 </h2>
 <h3>
     {{experience.position}}
 </h3>
+<h3>
+    {{experience.state}}
+</h3>
+<h4>Dates : {{experience.startDate}} - {{experience.endDate}}</h4>
 <ol>
+    <h4>About</h4>
     <li *ngFor='let about of experience.about'>{{about}}</li>
 </ol>
 
 <ul>
+    <h4>Key Projects</h4>
     <li *ngFor='let keyproject of experience.keyProjects'>{{keyproject}}</li>
 </ul>
-<p>{{experience.techUsed}}</p>
+<p>Tech Used: {{experience.techUsed}}</p>
