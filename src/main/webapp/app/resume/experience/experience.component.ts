@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Experience} from './Experience';
+import {animate, state, style, transition, trigger} from '@angular/animations';
 
 @Component({
     selector: 'experience',
