@@ -1,13 +1,18 @@
 <div class="container">
     <div class="row">
         <div class="row">
-            <div class="col-lg-6 text-left">
-                <div class="carousel">
-                    <ul class="slides">
-                        <li *ngFor='let exp of experiences;'>
-                            <experience [data]="exp"></experience>
-                        </li>
-                    </ul>
+            <div class="col-lg-4 text-left removePadding">
+                <ul>
+                <li *ngFor="let exp of experiences; let i = index" (click)="setClickedRow(i)"  >
+                    <div class="box cursorHand">
+                        <h3 [class.transparent]="i == selectedRow">{{exp.companyName}}</h3>
+                    </div>
+                </li>
+                </ul>
+            </div>
+            <div class="col-lg-6 text-left removePadding">
+                <div class="carousel transparent">
+                    <experience *ngIf="isDataAvailable" [(experience)]="this.activeExperience"></experience>
                 </div>
             </div>
         </div>

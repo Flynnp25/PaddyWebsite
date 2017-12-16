@@ -1,6 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
 import {Experience} from './Experience';
-import {animate, state, style, transition, trigger} from '@angular/animations';
 
 @Component({
     selector: 'experience',
@@ -8,17 +7,22 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
     styles: []
 })
 export class ExperienceComponent implements OnInit {
-    experience: Experience;
-    @Input() data;
+    _experience: Experience;
+    @Output() counterChange = new EventEmitter();
+
+    @Input()
+    get experience() {
+        return this._experience;
+    }
+
+    set experience(exp) {
+        this._experience = exp;
+        this.counterChange.emit(this._experience);
+    }
 
     constructor() {
     }
 
     ngOnInit() {
-        this.experience = this.data;
-    }
-
-    toggleState() {
-        this.experience.state = this.experience.state === 'active' ? 'inactive' : 'active';
     }
 }

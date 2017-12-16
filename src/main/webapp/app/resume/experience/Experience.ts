@@ -11,19 +11,6 @@ export class Experience {
     keyProjects: Array<string>;
     about: Array<string>;
     url: string;
-    state = 'inactive';
-
-    // constructor(public id: string,
-    //             public position: string,
-    //             public companyName: string,
-    //             public startDate: string,
-    //             public endDate: string,
-    //             public techUsed: string,
-    //             public keyProjects: Array<string>,
-    //             public about: Array<string>,
-    //             public url: string,
-    //             public state = 'inactive') {
-    // }
 
     constructor(exp: any) {
         this.id = exp.id;
@@ -35,10 +22,5 @@ export class Experience {
         this.keyProjects = exp.keyProjects;
         this.about = exp.about;
         this.url = exp.url;
-        this.state = exp.state;
-    }
-
-    toggleState() {
-        this.state = this.state === 'active' ? 'inactive' : 'active';
     }
 }
