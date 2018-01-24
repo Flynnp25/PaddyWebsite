@@ -13,4 +13,4 @@
 
 ## Description
 
-This Project just contains the source code for my website which can be found at [http://www.patrick-flynn.me](http://www.patrick-flynn.me/about)
+This Project just contains the source code for my website which can be found at [http://www.patrick-flynn.me](http://www.patrick-flynn.me)
