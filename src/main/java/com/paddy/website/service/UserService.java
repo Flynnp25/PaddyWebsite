@@ -90,7 +90,8 @@ public class UserService {
         String imageUrl, String langKey) {
 
         User newUser = new User();
-        Authority authority = authorityRepository.findOne(AuthoritiesConstants.USER);
+        Optional<Authority> optAuthority = authorityRepository.findById(AuthoritiesConstants.USER);
+        Authority authority = optAuthority.get();
         Set<Authority> authorities = new HashSet<>();
         String encryptedPassword = passwordEncoder.encode(password);
         newUser.setLogin(login);
@@ -127,7 +128,7 @@ public class UserService {
         if (userDTO.getAuthorities() != null) {
             Set<Authority> authorities = new HashSet<>();
             userDTO.getAuthorities().forEach(
-                authority -> authorities.add(authorityRepository.findOne(authority))
+                authority -> authorities.add(authorityRepository.findById(authority).get())
             );
             user.setAuthorities(authorities);
         }
@@ -170,7 +171,7 @@ public class UserService {
      */
     public Optional<UserDTO> updateUser(UserDTO userDTO) {
         return Optional.of(userRepository
-            .findOne(userDTO.getId()))
+            .findById(userDTO.getId())).get()
             .map(user -> {
                 user.setLogin(userDTO.getLogin());
                 user.setFirstName(userDTO.getFirstName());
@@ -182,7 +183,8 @@ public class UserService {
                 Set<Authority> managedAuthorities = user.getAuthorities();
                 managedAuthorities.clear();
                 userDTO.getAuthorities().stream()
-                    .map(authorityRepository::findOne)
+                    .map(auth -> authorityRepository.findById(auth).get()
+                )
                     .forEach(managedAuthorities::add);
                 userRepository.save(user);
                 log.debug("Changed Information for User: {}", user);
@@ -216,7 +218,7 @@ public class UserService {
     }
 
     public User getUserWithAuthorities(String id) {
-        return userRepository.findOne(id);
+        return userRepository.findById(id).get();
     }
 
     public User getUserWithAuthorities() {

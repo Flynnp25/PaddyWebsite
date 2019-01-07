@@ -16,15 +16,15 @@ buildscript {
 
 plugins {
     id "org.sonarqube" version "2.5"
-    id "net.ltgt.apt" version "0.11"
+    id "net.ltgt.apt" version "0.19"
     id "io.spring.dependency-management" version "1.0.3.RELEASE"
     id "com.moowork.node" version "1.2.0"
     //jhipster-needle-gradle-plugins - JHipster will add additional gradle plugins here
 }
 
 apply plugin: 'java'
-sourceCompatibility=1.8
-targetCompatibility=1.8
+sourceCompatibility=1.11
+targetCompatibility=1.11
 apply plugin: 'maven'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'war'
@@ -39,8 +39,8 @@ version = '0.0.1-SNAPSHOT'
 
 description = ''
 
-bootRepackage {
-   mainClass = 'com.paddy.website.PaddyWebsiteApp'
+bootJar {
+    mainClassName = 'com.paddy.website.PaddyWebsiteApp'
 }
 
 war {
@@ -48,8 +48,7 @@ war {
 }
 
 springBoot {
-    mainClass = 'com.paddy.website.PaddyWebsiteApp'
-    executable = true
+    mainClassName = 'com.paddy.website.PaddyWebsiteApp'
     buildInfo()
 }
 
@@ -68,7 +67,7 @@ if (OperatingSystem.current().isWindows()) {
     }
 
     bootRun {
-        addResources = false
+        sourceResources sourceSets.main
         dependsOn pathingJar
         doFirst {
             classpath = files("$buildDir/classes/java/main", "$buildDir/resources/main", pathingJar.archivePath)
@@ -76,7 +75,7 @@ if (OperatingSystem.current().isWindows()) {
     }
 } else {
     bootRun {
-        addResources = false
+        sourceResources sourceSets.main
     }
 }
 
@@ -195,11 +194,11 @@ task cleanResources(type: Delete) {
     delete 'build/resources'
 }
 
-task wrapper(type: Wrapper) {
-    gradleVersion = '4.1'
-}
+//task wrapper(type: Wrapper) {
+//    gradleVersion = '5.1'
+//}
 
-task stage(dependsOn: 'bootRepackage') {
+task stage(dependsOn: 'bootJar') {
 }
 
 if (project.hasProperty('nodeInstall')) {

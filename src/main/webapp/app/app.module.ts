@@ -9,10 +9,14 @@ import {ExperienceService} from './resume/experience/experience.service';
 import {AboutModule} from './about/about.module';
 import {ResumeModule} from './resume/resume.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BlogComponent } from './blog/blog.component';
+import { TechComponent } from './tech/tech.component';
 
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,
+        BlogComponent,
+        TechComponent
     ],
     imports: [
         BrowserModule,

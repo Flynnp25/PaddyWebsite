@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.Instant;
 import java.util.Date;
 import java.util.List;
 
@@ -32,14 +33,13 @@ public class CustomAuditEventRepository implements AuditEventRepository {
         this.auditEventConverter = auditEventConverter;
     }
 
-    @Override
     public List<AuditEvent> find(Date after) {
         Iterable<PersistentAuditEvent> persistentAuditEvents =
             persistenceAuditEventRepository.findByAuditEventDateAfter(after.toInstant());
         return auditEventConverter.convertToAuditEvent(persistentAuditEvents);
     }
 
-    @Override
+
     public List<AuditEvent> find(String principal, Date after) {
         Iterable<PersistentAuditEvent> persistentAuditEvents;
         if (principal == null && after == null) {
@@ -53,7 +53,6 @@ public class CustomAuditEventRepository implements AuditEventRepository {
         return auditEventConverter.convertToAuditEvent(persistentAuditEvents);
     }
 
-    @Override
     public List<AuditEvent> find(String principal, Date after, String type) {
         Iterable<PersistentAuditEvent> persistentAuditEvents =
             persistenceAuditEventRepository.findByPrincipalAndAuditEventDateAfterAndAuditEventType(principal, after.toInstant(), type);
@@ -69,9 +68,15 @@ public class CustomAuditEventRepository implements AuditEventRepository {
             PersistentAuditEvent persistentAuditEvent = new PersistentAuditEvent();
             persistentAuditEvent.setPrincipal(event.getPrincipal());
             persistentAuditEvent.setAuditEventType(event.getType());
-            persistentAuditEvent.setAuditEventDate(event.getTimestamp().toInstant());
+            persistentAuditEvent.setAuditEventDate(event.getTimestamp());
             persistentAuditEvent.setData(auditEventConverter.convertDataToStrings(event.getData()));
             persistenceAuditEventRepository.save(persistentAuditEvent);
         }
     }
+
+    @Override
+    public List<AuditEvent> find(String principal, Instant after, String type) {
+        return null;
+    }
+
 }
